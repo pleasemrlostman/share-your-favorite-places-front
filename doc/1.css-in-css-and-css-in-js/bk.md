@@ -1,0 +1,38 @@
+- CSS-in-CSS (css 파일을 생성하여 모듈화 / 평소 쓰는)
+  - 종류
+    - css 전처리기
+      - sass
+      - less
+      - post css
+      - stylus
+    - css frameworks
+      - tailwind
+      - bootstrap
+    - css modules / 파일명.module.css
+  - css 번들러 or js 번들러
+- CSS-in-JS
+  - 종류
+    - styled-components
+    - emotion
+  - javascript로 동적 style 생성
+    - 브라우저가 js를 실행하여 동적으로 style을 생성해낸다.
+    - js 번들러
+  - 변수에 따라 다른 style을 생성할 수 있다.
+- 두 가지의 차이점과 각각의 장단점
+  - css in css
+    - CSSOM 을 만들어내고, 이것은 한 번 만들어진 후로 재 렌더링에도 재 파싱 되지 않는다. 고로 성능 향상에 효과가 있음.
+  - css in js
+    - 동적인 style이 가능?
+    - class 명의 중복 걱정 없음 (자동 생성)
+    - 자동으로 vendor-prefix를 붙여준다.
+  - 리렌더링이 빈번한 컴포넌트의 경우
+    - 정적 스타일 : css in css 사용
+    - 동적 스타일 : css in js, but 성능 고려
+- NextJS는 왜 CSS in CSS를 선호하는가
+  - js가 없는 정적 html+css를 미리 보여주는 pre-rendering을 사용한다.
+    **- 서버 컴포넌트(RSC)를 활용하려면 빌드 시에 CSS 파일이 사전에 준비되어야 합니다.**
+  - css in js는 런타임에 style을 생성하게 되는데, nextjs는 ssr이다. 그 말은 서버에서 완성된 html 을 보낸다는 것인데 런타임 때 style을 적용하게 되면 첫 화면은 그냥 생 html => 깜빡이면서 style을 적용하게 되고 그제서야 보여주고 싶은 화면을 보여주게 되는 것이다.
+  - zero runtime css-in-js 방식도 존재하는데, JS 파일에 작성된 스타일 코드를 빌드 타임에 CSS 파일로 분리해서 적용한다. 때문에 SSR에서 Runtime CSS-in-JS 보단 문제가 적다. 다만 Next.js 13 버전에서는 이 방식도 클라이언트 컴포넌트에서만 사용이 가능하다고 한다.
+
+빌드 타임
+런타
