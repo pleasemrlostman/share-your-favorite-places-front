@@ -39,6 +39,9 @@ export default function SignupForm() {
             <Input
               control={control}
               name="email"
+              rules={{
+                minLength: 1,
+              }}
               placeholder="휴대폰 번호 또는 이메일 주소"
               className="w-full mb-[.375rem]"
             />
@@ -51,18 +54,24 @@ export default function SignupForm() {
             <Input
               control={control}
               name="nickname"
+              rules={{
+                minLength: 1,
+              }}
               placeholder="사용자 이름"
               className="w-full mb-[.375rem]"
             />
             <Input
               control={control}
               name="password"
+              rules={{
+                minLength: 6,
+              }}
               placeholder="비밀번호"
               className="w-full"
             />
             <Button
               customType={`DEFAULT`}
-              className="flex justify-center itmes-center w-full mt-4 mb-5"
+              className="flex justify-center items-center w-full mt-4 mb-5"
             >
               가입
             </Button>

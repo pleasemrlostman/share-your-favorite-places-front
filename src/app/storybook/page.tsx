@@ -2,7 +2,7 @@
 
 import { useForm } from "react-hook-form";
 
-import Input from "@/app/_component/input";
+import { CustomInput } from "@/app/_component/input";
 import Button from "@/app/_component/button";
 
 export default function Storybook() {
@@ -13,7 +13,11 @@ export default function Storybook() {
   return (
     <div className="min-h-screen bg-white p-24">
       <form>
-        <Input name="email" placeholder="입력해 주세요." control={control} />
+        <CustomInput
+          name="email"
+          placeholder="입력해 주세요."
+          control={control}
+        />
         <Button
           customType={`DEFAULT`}
           className="flex justify-center items-center w-full mt-4"

@@ -18,9 +18,10 @@ export default function LoginForm() {
       email: "",
       password: "",
     },
+    mode: "onChange",
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: FormValues) => {
     console.log("data", data);
   };
 
@@ -34,17 +35,24 @@ export default function LoginForm() {
             <Input
               control={control}
               name="email"
+              rules={{
+                minLength: 1,
+              }}
               placeholder="전화번호, 사용자 이름 또는 이메일"
               className="w-full mb-[.375rem]"
             />
             <Input
               control={control}
               name="password"
+              rules={{
+                minLength: 6,
+              }}
               placeholder="비밀번호"
               className="w-full"
             />
             <Button
-              customType={`DEFAULT`}
+              disabled={!isValid}
+              customType={`${!isValid ? "DISABLED" : "DEFAULT"}`}
               className="flex justify-center items-center w-full mt-4"
             >
               로그인
