@@ -70,7 +70,8 @@ export default function SignupForm() {
               className="w-full"
             />
             <Button
-              customType={`DEFAULT`}
+              disabled={!isValid}
+              customType={`${!isValid ? "DISABLED" : "DEFAULT"}`}
               className="flex justify-center items-center w-full mt-4 mb-5"
             >
               가입
