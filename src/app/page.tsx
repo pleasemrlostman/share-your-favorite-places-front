@@ -11,8 +11,8 @@ export default function Home() {
           }}
           className=" w-[5rem] h-[5rem]"
         />
-        {USER_LIST.map((user) => {
-          return <Profile user={user} className=" w-[5rem] h-[5rem]" />;
+        {USER_LIST.map((user, index) => {
+          return <Profile key={index} user={user} className=" w-[5rem] h-[5rem]" />;
         })}
       </section>
       <section className="flex-grow">
