@@ -16,7 +16,7 @@ export default function Home() {
         })}
       </section>
       <section className="flex-grow">
-        <div className="h-full">지도영역</div>
+        <div className="h-full">지도영역_</div>
       </section>
     </>
   );
