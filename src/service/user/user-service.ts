@@ -1,4 +1,4 @@
-import Service from "@/app/_service/index";
+import Service from "@/service/index";
 
 class UserService extends Service {
   constructor() {
@@ -6,6 +6,10 @@ class UserService extends Service {
   }
   getUsers() {
     return this.http.get("/list");
+  }
+
+  getUser(userId: number) {
+    return this.http.get(`/${userId}`);
   }
 }
 export default new UserService();

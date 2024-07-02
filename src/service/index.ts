@@ -1,4 +1,8 @@
-import axios, { AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from "axios";
+import axios, {
+  AxiosInstance,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from "axios";
 
 class Service {
   protected http: AxiosInstance;
