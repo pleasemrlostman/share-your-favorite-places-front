@@ -40,4 +40,16 @@ export async function getDehydratedQuery<Q extends QueryProps>({
   >;
 }
 
+export async function getDehydratedQueries<Q extends QueryProps[]>(queries: Q) {
+  const queryClient = getQueryClient();
+  await Promise.all(
+    queries.map(({ queryKey, queryFn }) =>
+      queryClient.prefetchQuery({ queryKey, queryFn })
+    )
+  );
+  return dehydrate(queryClient).queries as DehydratedQueryExtended<
+    UnwrapPromise<ReturnType<Q[number]["queryFn"]>>
+  >[];
+}
+
 export const Hydrate = HydrationBoundary;
