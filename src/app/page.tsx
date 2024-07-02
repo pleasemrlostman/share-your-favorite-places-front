@@ -1,9 +1,17 @@
-import Image from "next/image";
+import Userist from "@/component/user-list";
+import queryOptions from "@/service/user/user-quries";
+import { Hydrate, getDehydratedQuery } from "@/utils/react-query";
 
-export default function Home() {
+export default async function Home() {
+  const { queryKey, queryFn } = queryOptions.all();
+
+  const query = await getDehydratedQuery({ queryKey, queryFn });
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      share your favorite places
+      <Hydrate state={{ queries: [query] }}>
+        <Userist />
+      </Hydrate>
     </main>
   );
 }

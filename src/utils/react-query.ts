@@ -26,14 +26,14 @@ export async function getDehydratedQuery<Q extends QueryProps>({
   queryFn,
 }: Q) {
   const queryClient = getQueryClient();
-
   await queryClient.prefetchQuery({ queryKey, queryFn });
 
   const { queries } = dehydrate(queryClient);
-
   const [dehydratedQuery] = queries.filter((query) =>
     isEqual(query.queryKey, queryKey)
   );
+
+  console.log("dehydratedQuery", dehydratedQuery);
 
   return dehydratedQuery as DehydratedQueryExtended<
     UnwrapPromise<ReturnType<Q["queryFn"]>>

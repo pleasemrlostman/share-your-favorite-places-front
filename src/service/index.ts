@@ -33,7 +33,7 @@ class Service {
     this.http.interceptors.response.use(
       (response: AxiosResponse) => {
         // 응답 데이터를 가공하거나 로깅할 수 있습니다.
-        return response;
+        return response.data;
       },
       (error) => {
         // 응답 오류가 있는 작업 수행
