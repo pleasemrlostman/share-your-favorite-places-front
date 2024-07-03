@@ -17,7 +17,10 @@ const Profile = ({
       {user.image ? (
         <img src={user.image} alt="user image" />
       ) : (
-        <FontAwesomeIcon icon={faCircleUser} className="w-full h-full" />
+        <FontAwesomeIcon
+          icon={faCircleUser}
+          className="w-full h-full text-gray-500"
+        />
       )}
     </div>
   );

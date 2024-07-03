@@ -22,7 +22,7 @@ export default function NavMenu() {
         <Link href="/" className={LINK_CLASS_NAME}>
           <FontAwesomeIcon
             icon={segment === "/" ? faHouse : faHouse}
-            className="w-[1.4rem] h-[1.4rem]"
+            className="w-[1.4rem] h-[1.4rem] text-gray-800"
           />
         </Link>
       </li>
@@ -30,13 +30,16 @@ export default function NavMenu() {
         <Link href="/돋보기" className={LINK_CLASS_NAME}>
           <FontAwesomeIcon
             icon={faMagnifyingGlass}
-            className="w-[1.4rem] h-[1.4rem]"
+            className="w-[1.4rem] h-[1.4rem] text-gray-800"
           />
         </Link>
       </li>
       <li className={LIST_CLASS_NAME}>
         <Link href="/?" className={LINK_CLASS_NAME}>
-          <FontAwesomeIcon icon={faPlus} className="w-[1.4rem] h-[1.4rem]" />
+          <FontAwesomeIcon
+            icon={faPlus}
+            className="w-[1.4rem] h-[1.4rem] text-gray-800"
+          />
         </Link>
       </li>
       <li className={LIST_CLASS_NAME}>
@@ -46,7 +49,7 @@ export default function NavMenu() {
               name: "me",
               image: null,
             }}
-            className="w-[1.8rem] h-[1.8rem]"
+            className="w-[1.8rem] h-[1.8rem] text-gray-800"
           />
         </Link>
       </li>
