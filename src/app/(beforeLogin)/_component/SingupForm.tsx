@@ -1,10 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useForm } from "react-hook-form";
+import { FieldValue, UseControllerProps, useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
-import { FormValues } from "user";
 import Button from "@/app/_component/button";
 import Input from "@/app/_component/input";
 
@@ -13,7 +12,7 @@ export default function SignupForm() {
     control,
     handleSubmit,
     formState: { isValid },
-  } = useForm<FormValues>({
+  } = useForm<UseControllerProps>({
     defaultValues: {
       email: "",
       password: "",
