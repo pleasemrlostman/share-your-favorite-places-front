@@ -7,12 +7,17 @@ import { DevTool } from "@hookform/devtools";
 import Button from "@/app/_component/button";
 import Input from "@/app/_component/input";
 
+type Props = {
+  email: string;
+  password: string;
+};
+
 export default function LoginForm() {
   const {
     control,
     handleSubmit,
     formState: { isValid },
-  } = useForm<UseControllerProps>({
+  } = useForm({
     defaultValues: {
       email: "",
       password: "",
@@ -20,7 +25,7 @@ export default function LoginForm() {
     mode: "onChange",
   });
 
-  const onSubmit = (data: UseControllerProps) => {
+  const onSubmit = (data: Props) => {
     console.log("data", data);
   };
 

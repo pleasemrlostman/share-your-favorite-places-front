@@ -1,6 +1,6 @@
 "use client";
 
-import { useForm } from "react-hook-form";
+import { useForm, UseControllerProps } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
 import Input from "@/app/_component/input";
@@ -8,12 +8,22 @@ import Button from "@/app/_component/button";
 import TextArea from "@/app/_component/textarea";
 import Radio from "@/app/_component/radio";
 
+type Props = {
+  input: string;
+  area: string;
+  radio: string;
+};
+
 export default function Storybook() {
   const { control, handleSubmit } = useForm({
-    defaultValues: {},
+    defaultValues: {
+      input: "",
+      area: "",
+      radio: "",
+    },
   });
 
-  const onSubmit = (data: UseControllerProps) => {
+  const onSubmit = (data: Props) => {
     console.log("data", data);
   };
 
