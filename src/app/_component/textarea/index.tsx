@@ -6,11 +6,16 @@ import {
   useController,
 } from "react-hook-form";
 
+type TextAreaProps<T extends FieldValues> = UseControllerProps<T> & {
+  className?: string;
+};
+
 export default function TextArea<T extends FieldValues>({
   control,
   name,
+  className,
   ...props
-}: UseControllerProps<T>) {
+}: TextAreaProps<T>) {
   const {
     field: { onChange },
   } = useController({
@@ -23,7 +28,7 @@ export default function TextArea<T extends FieldValues>({
       onChange={onChange}
       name={name}
       {...props}
-      className={props.className}
+      className={className}
     />
   );
 }

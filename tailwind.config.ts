@@ -19,6 +19,7 @@ const config: Config = {
         navy: "#00376B",
         grey: "#fafafa",
         text: "#737373",
+        error: "#ed2024",
       },
     },
   },

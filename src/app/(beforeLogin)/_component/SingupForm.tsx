@@ -46,7 +46,10 @@ export default function SignupForm() {
               control={control}
               name="email"
               rules={{
-                minLength: 1,
+                minLength: {
+                  value: 1,
+                  message: "1글자 이상 입력해주세요.",
+                },
               }}
               placeholder="휴대폰 번호 또는 이메일 주소"
               className="w-full mb-[.375rem]"
@@ -61,7 +64,10 @@ export default function SignupForm() {
               control={control}
               name="nickname"
               rules={{
-                minLength: 1,
+                minLength: {
+                  value: 1,
+                  message: "1글자 이상 입력해주세요.",
+                },
               }}
               placeholder="사용자 이름"
               className="w-full mb-[.375rem]"
@@ -70,7 +76,10 @@ export default function SignupForm() {
               control={control}
               name="password"
               rules={{
-                minLength: 6,
+                minLength: {
+                  value: 6,
+                  message: "6글자 이상 입력해주세요.",
+                },
               }}
               placeholder="비밀번호"
               className="w-full"

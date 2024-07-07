@@ -14,6 +14,7 @@ type InputProps<T extends FieldValues> = UseControllerProps<T> & {
 export default function Input<T extends FieldValues>({
   control,
   name,
+  rules,
   className,
   placeholder,
   ...props
@@ -24,11 +25,11 @@ export default function Input<T extends FieldValues>({
   } = useController({
     control,
     name,
-    rules: { required: true },
+    rules: { required: true, ...rules },
   });
 
   return (
-    <>
+    <div className="flex flex-col">
       <input
         type="text"
         onChange={onChange}
@@ -37,7 +38,11 @@ export default function Input<T extends FieldValues>({
         {...props}
         className={`p-2 bg-grey border border-[#dbdbdb] rounded focus:outline-none text-sm placeholder:text-[.75rem] placeholder:text-text ${className}`}
       />
-      {error && <span className="inline-block mt-2">{error.message}</span>}
-    </>
+      {error && (
+        <span className="inline-block mt-2 text-sm text-error">
+          {error.message}
+        </span>
+      )}
+    </div>
   );
 }

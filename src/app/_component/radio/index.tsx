@@ -6,11 +6,22 @@ import {
   useController,
 } from "react-hook-form";
 
+type RadioProps<T extends FieldValues> = UseControllerProps<T> & {
+  value: string | number;
+  className?: string;
+  disabled?: boolean;
+  label?: string;
+  id?: string;
+};
+
 export default function Radio<T extends FieldValues>({
   control,
   name,
+  value,
+  className,
+  disabled,
   ...props
-}: UseControllerProps<T>) {
+}: RadioProps<T>) {
   const {
     field: { onChange },
   } = useController({
@@ -18,14 +29,20 @@ export default function Radio<T extends FieldValues>({
     name,
   });
   return (
-    <input
-      type="radio"
-      onChange={onChange}
-      name={name}
-      {...props}
-      value={props.value}
-      disabled={props.disabled}
-      className={props.className}
-    />
+    <div className="flex items-center">
+      <input
+        type="radio"
+        onChange={onChange}
+        name={name}
+        {...props}
+        value={value}
+        disabled={disabled}
+      />
+      {props.label && (
+        <label htmlFor={props.id} className="select-none cursor-pointer pl-2">
+          {props.label}
+        </label>
+      )}
+    </div>
   );
 }
