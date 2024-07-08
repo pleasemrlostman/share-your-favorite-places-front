@@ -1,11 +1,25 @@
 "use client";
 
-import Profile from "@/app/_component/Profile";
-import Checkbox from "./_component/Checkbox";
 import { useForm } from "react-hook-form";
-import Checkboxes from "./_component/Checkbox";
+
+import Profile from "@/app/_component/Profile";
+import Checkbox from "@/app/_component/Checkbox";
+import Checkboxes from "@/app/_component/Checkbox";
+import { useUserQuery } from "@/app/_hooks/useUserQuery_bk";
+
+type test = {
+  email: string;
+  password: string;
+  name: string;
+  nickname: string;
+  profile_image: string;
+  role: string;
+  __v: number;
+};
 
 export default function Home() {
+  const { data } = useUserQuery<test[]>({});
+
   const { register, handleSubmit, control } = useForm({
     defaultValues: {
       controlled: [],
