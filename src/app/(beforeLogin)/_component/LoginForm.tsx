@@ -4,8 +4,8 @@ import Link from "next/link";
 import { UseControllerProps, useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
-import Button from "@/app/_component/button";
-import Input from "@/app/_component/input";
+import Button from "@/app/_component/Button";
+import Input from "@/app/_component/Input";
 
 type Props = {
   email: string;

@@ -3,11 +3,11 @@
 import { useForm, UseControllerProps } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
-import Input from "@/app/_component/input";
-import Button from "@/app/_component/button";
-import TextArea from "@/app/_component/textarea";
-import Radio from "@/app/_component/radio";
-import Checkbox from "@/app/_component/checkbox";
+import Input from "@/app/_component/Input";
+import Button from "@/app/_component/Button";
+import TextArea from "@/app/_component/Textarea";
+import Radio from "@/app/_component/Radio";
+import Checkbox from "@/app/_component/Checkbox";
 
 type Props = {
   input: string;
