@@ -1,63 +1,140 @@
+"use client";
+
 import { useState } from "react";
 import {
-  FieldValues,
-  UseControllerProps,
   useController,
+  UseControllerProps,
+  FieldValues,
 } from "react-hook-form";
 
-const Checkboxes = <T extends FieldValues>({
-  options,
+type CheckboxProps<T extends FieldValues> = UseControllerProps<T> & {
+  value?: string | number;
+  label?: string;
+  id?: string;
+  className?: string;
+  disabled?: boolean;
+  checked?: boolean;
+  allCheckedType?: boolean;
+  data?: {
+    id: number;
+    value: string;
+    label?: string;
+    option?: string;
+  }[];
+};
+
+export default function Checkbox<T extends FieldValues>({
   control,
   name,
-}: {
-  options: { [key: string]: string }[];
-} & UseControllerProps<T>) => {
-  const { field } = useController({
-    control,
-    name,
-  });
-  const [value, setValue] = useState<Array<string | null>>(field.value || []);
+  className,
+  disabled,
+  allCheckedType,
+  data,
+  ...props
+}: CheckboxProps<T>) {
+  const {
+    field: { onChange, value },
+  } = useController({ control, name });
 
-  const handleAllCheckChange = (isChecked: boolean) => {
+  const [checkboxValue, setCheckboxValue] = useState<string[]>(value ?? []);
+
+  const handleAllChecked = (isChecked: boolean) => {
     if (isChecked) {
-      const allOptions = options.map((option) =>
-        option.value === "all" ? null : option.value
-      );
-      setValue(allOptions);
-      field.onChange(allOptions);
+      const allCheckedValue = data?.map((list) => list.value) || [];
+      setCheckboxValue(allCheckedValue);
+      onChange(allCheckedValue);
     } else {
-      setValue([]);
-      field.onChange([]);
+      setCheckboxValue([]);
+      onChange([]);
     }
   };
 
+  const handleSingleChecked = (value: string, isChecked: boolean) => {
+    const newValue = isChecked
+      ? [...checkboxValue, value]
+      : checkboxValue.filter((v) => v !== value);
+
+    setCheckboxValue(newValue);
+    onChange(newValue);
+  };
+
+  if (allCheckedType) {
+    return (
+      <div className="flex items-center">
+        <input
+          type="checkbox"
+          checked={value.length === data?.length}
+          onChange={(e) => handleAllChecked(e.target.checked)}
+          name={name}
+          {...props}
+          disabled={disabled}
+          className={className}
+          id={props.label}
+        />
+        {props.label && (
+          <label
+            htmlFor={props.label}
+            className="select-none cursor-pointer pl-2"
+          >
+            {props.label}
+          </label>
+        )}
+      </div>
+    );
+  }
+
+  if (data) {
+    return (
+      <>
+        {data.map((item) => (
+          <div className="flex items-center" key={item.id}>
+            <input
+              type="checkbox"
+              checked={value.includes(item.value)}
+              onChange={(e) =>
+                handleSingleChecked(item.value, e.target.checked)
+              }
+              value={item.value}
+              id={item.label}
+              disabled={disabled}
+            />
+            {item.label && (
+              <label
+                htmlFor={item.label}
+                className="select-none cursor-pointer pl-2"
+              >
+                {item.label}
+              </label>
+            )}
+          </div>
+        ))}
+      </>
+    );
+  }
+
   return (
-    <>
-      {options.map((option, index) => (
-        <label key={option.value}>
-          <input
-            onChange={(e) => {
-              if (option.value === "all")
-                return handleAllCheckChange(e.target.checked);
-
-              const valueCopy = [...value];
-              valueCopy[index] = e.target.checked ? option.value : null;
-              field.onChange(valueCopy);
-              setValue(valueCopy);
-            }}
-            checked={
-              option.value === "all"
-                ? value.length === options.length
-                : value.includes(option.value)
-            }
-            type="checkbox"
-            value={option.value}
-          />
-          {option.title}
+    <div className="flex items-center">
+      <input
+        type="checkbox"
+        checked={props.checked ?? value === props.value}
+        onChange={(e) => {
+          const newValue = e.target.checked ? props.value : "";
+          onChange(newValue);
+        }}
+        name={name}
+        {...props}
+        disabled={disabled}
+        className={className}
+        id={props.label}
+      />
+      {props.label && (
+        <label
+          htmlFor={props.label}
+          className="select-none cursor-pointer pl-2"
+        >
+          {props.label}
         </label>
-      ))}
-    </>
+      )}
+    </div>
   );
-};
-
-export default Checkboxes;
+}
