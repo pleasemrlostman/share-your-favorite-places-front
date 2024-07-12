@@ -103,7 +103,6 @@ export default function Storybook() {
 }
 
 const CHECKBOX_DATA = [
-  // { id: 0, value: "0", label: "all", option: "all" },
   { id: 1, value: "1", label: "checkbox-1" },
   { id: 2, value: "2", label: "checkbox-2" },
   { id: 3, value: "3", label: "checkbox-3" },
