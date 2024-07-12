@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { UseControllerProps, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
+import { useQueryClient } from "@tanstack/react-query";
 
 import Button from "@/app/_component/Button";
 import Input from "@/app/_component/Input";
+import { useUsers } from "@/service/user/useUserService";
 
 type Props = {
   email: string;
@@ -28,6 +30,8 @@ export default function LoginForm() {
   const onSubmit = (data: Props) => {
     console.log("data", data);
   };
+
+  const { data: userList } = useUsers();
 
   return (
     <>
@@ -93,6 +97,17 @@ export default function LoginForm() {
           </Link>
         </div>
       </div>
+
+      {/* 데이터 확인 */}
+      {/* <div
+        className={
+          "w-[21.875rem] py-[.625rem] border border-line text-center flex items-center flex-col mt-[.625rem]"
+        }
+      >
+        {userList?.map((user, index: number) => {
+          return <div key={index}>{user.email}</div>;
+        })}
+      </div> */}
     </>
   );
 }

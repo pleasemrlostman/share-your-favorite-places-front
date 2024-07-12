@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { FieldValue, UseControllerProps, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
 import Button from "@/app/_component/Button";
 import Input from "@/app/_component/Input";
+
+import { useUpdateUser } from "@/service/auth/useAuthService";
 
 type Props = {
   email: string;
@@ -26,10 +28,19 @@ export default function SignupForm() {
       name: "",
       nickname: "",
     },
+    mode: "onChange",
   });
+
+  const successCallback = () => {
+    alert("회원가입이 완료됐습니다.");
+  };
+
+  const { mutate: registerUser } = useUpdateUser(successCallback);
 
   const onSubmit = (data: Props) => {
     console.log("data", data);
+
+    registerUser(data);
   };
 
   return (
