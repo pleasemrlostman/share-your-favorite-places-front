@@ -8,6 +8,7 @@ import Button from "@/app/_component/Button";
 import TextArea from "@/app/_component/Textarea";
 import Radio from "@/app/_component/Radio";
 import Checkbox from "@/app/_component/Checkbox";
+import * as Select from "@/app/_component/Select";
 
 type Props = {
   input: string;
@@ -35,6 +36,7 @@ export default function Storybook() {
   return (
     <>
       <DevTool control={control} />
+      <Select.Wrapper><Select.Inner /></Select.Wrapper>
       <div className="min-h-screen bg-white p-24">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col items-start gap-10 max-w-fit">
