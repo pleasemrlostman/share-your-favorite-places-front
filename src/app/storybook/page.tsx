@@ -26,6 +26,7 @@ export default function Storybook() {
       radio: "",
       single: "",
       all: [],
+      select: 2,
     },
   });
 
@@ -36,10 +37,12 @@ export default function Storybook() {
   return (
     <>
       <DevTool control={control} />
-      <Select.Wrapper><Select.Inner /></Select.Wrapper>
       <div className="min-h-screen bg-white p-24">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col items-start gap-10 max-w-fit">
+            <Select.Wrapper className="w-full">
+              <Select.Inner control={control} name="select" />
+            </Select.Wrapper>
             <Input
               name="input"
               placeholder="입력해 주세요."
