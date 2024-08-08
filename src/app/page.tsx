@@ -9,10 +9,7 @@ export default async function Home() {
   const query = await getDehydratedQuery({ queryKey, queryFn });
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Hydrate state={{ queries: [query] }}>
-        <Userist />
-      </Hydrate>
+    <>
       <section className="min-w-full overflow-x-auto flex flex-nowrap gap-[1rem] pl-3 py-2 border-b border-gray-100">
         <Profile
           user={{
@@ -30,7 +27,10 @@ export default async function Home() {
       <section className="flex-grow">
         <div className="h-full">지도영역_</div>
       </section>
-    </main>
+      <Hydrate state={{ queries: [query] }}>
+        <Userist />
+      </Hydrate>
+    </>
   );
 }
 
