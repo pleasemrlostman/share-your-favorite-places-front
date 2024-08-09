@@ -29,7 +29,7 @@ export default function Input<T extends FieldValues>({
   });
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full">
       <input
         type="text"
         onChange={onChange}

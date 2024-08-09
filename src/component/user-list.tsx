@@ -1,8 +1,9 @@
 "use client";
-import { useUsers } from "@/service/user/useUserService";
+import { useUserList } from "@/service/user/useUserService";
 
-export default function Userist() {
-  const { data: users } = useUsers();
+export default function UseList() {
+  const { data: users } = useUserList();
+
   return (
     <div>
       {users?.map((users) => {

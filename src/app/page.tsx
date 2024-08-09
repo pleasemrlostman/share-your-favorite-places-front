@@ -1,7 +1,8 @@
-import Userist from "@/component/user-list";
-import queryOptions from "@/service/user/user-quries";
+import UseList from "@/component/user-list";
+import queryOptions from "@/service/user/queries";
 import { Hydrate, getDehydratedQuery } from "@/utils/react-query";
 import Profile from "@/app/_component/Profile";
+import MapBox from "@/app/_component/MapBox";
 
 export default async function Home() {
   const { queryKey, queryFn } = queryOptions.all();
@@ -25,10 +26,12 @@ export default async function Home() {
         })}
       </section>
       <section className="flex-grow">
-        <div className="h-full">지도영역_</div>
+        <div className="h-full">
+          <MapBox />
+        </div>
       </section>
       <Hydrate state={{ queries: [query] }}>
-        <Userist />
+        <UseList />
       </Hydrate>
     </>
   );

@@ -7,7 +7,7 @@ import { useQueryClient } from "@tanstack/react-query";
 
 import Button from "@/app/_component/Button";
 import Input from "@/app/_component/Input";
-import { useUsers } from "@/service/user/useUserService";
+import { useUserList } from "@/service/user/useUserService";
 
 type Props = {
   email: string;
@@ -31,7 +31,7 @@ export default function LoginForm() {
     console.log("data", data);
   };
 
-  const { data: userList } = useUsers();
+  const { data: userList } = useUserList();
 
   return (
     <>

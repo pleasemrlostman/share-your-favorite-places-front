@@ -2,4 +2,4 @@ import { useQuery } from "@tanstack/react-query";
 
 import queryOptions from "@/service/user/queries";
 
-export const useUsers = () => useQuery(queryOptions.all());
+export const useUserList = () => useQuery(queryOptions.all());

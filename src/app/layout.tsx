@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import ReactQueryProviders from "@/hooks/useReactQuery";
 import NavMenu from "@/app/_component/NavMenu";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,6 +30,10 @@ export default function RootLayout({
             </nav>
           </main>
         </ReactQueryProviders>
+        <Script
+          src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.KAKAO_JS_APPKEY}&libraries=services,clusterer&autoload=false`}
+          strategy="beforeInteractive"
+        />
       </body>
     </html>
   );

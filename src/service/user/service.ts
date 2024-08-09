@@ -1,7 +1,7 @@
 import Service from "@/service/index";
 
 class UserService extends Service {
-  getUsers() {
+  getUserList() {
     return this.http.get("/user/list");
   }
 }
