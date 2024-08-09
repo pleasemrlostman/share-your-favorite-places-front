@@ -1,8 +1,13 @@
-"use client";
-
+import Userist from "@/component/user-list";
+import queryOptions from "@/service/user/user-quries";
+import { Hydrate, getDehydratedQuery } from "@/utils/react-query";
 import Profile from "@/app/_component/Profile";
 
-export default function Home() {
+export default async function Home() {
+  const { queryKey, queryFn } = queryOptions.all();
+
+  const query = await getDehydratedQuery({ queryKey, queryFn });
+
   return (
     <>
       <section className="min-w-full overflow-x-auto flex flex-nowrap gap-[1rem] pl-3 py-2 border-b border-gray-100">
@@ -22,6 +27,9 @@ export default function Home() {
       <section className="flex-grow">
         <div className="h-full">지도영역_</div>
       </section>
+      <Hydrate state={{ queries: [query] }}>
+        <Userist />
+      </Hydrate>
     </>
   );
 }
