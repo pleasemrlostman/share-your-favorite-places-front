@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import ReactQueryProviders from "@/hooks/useReactQuery";
 import NavMenu from "@/app/_component/NavMenu";
-import { useUserQuery } from "@/app/_hooks/useUserQuery_bk";
 
 const inter = Inter({ subsets: ["latin"] });
 

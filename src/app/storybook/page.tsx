@@ -3,7 +3,7 @@
 import { useForm, UseControllerProps } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
-import Input from "@/app/_component/Input";
+import Input from "@/app/_component/input";
 import Button from "@/app/_component/Button";
 import TextArea from "@/app/_component/Textarea";
 import Radio from "@/app/_component/Radio";
