@@ -1,8 +1,18 @@
 import Service from "@/service/index";
 
-class AuthService extends Service {
+type userRegister = {
+  email: string;
+  name: string;
+  nickname: string;
+  password: string;
+};
+
+class authService extends Service {
   updateUser(params: {}) {
-    return this.http.post(`/auth/register`, params);
+    return this.http.post<userRegister[]>(`/auth/register`, params);
   }
 }
-export default new AuthService();
+
+const AuthService = new authService();
+
+export default AuthService;

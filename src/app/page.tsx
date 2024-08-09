@@ -45,7 +45,8 @@ const USER_LIST = [
   {
     name: "chu",
     image:
-      "https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202010/22/2182ecd3-b8cc-4993-98a7-8c2568f9fbbc.jpg",
+      // "https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202010/22/2182ecd3-b8cc-4993-98a7-8c2568f9fbbc.jpg",
+      null,
   },
   {
     name: "chu",

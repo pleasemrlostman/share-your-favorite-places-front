@@ -1,9 +1,18 @@
 import Service from "@/service/index";
 
-class UserService extends Service {
+type userList = {
+  email: string;
+  name: string;
+  nickname: string;
+  password: string;
+};
+
+class userService extends Service {
   getUserList() {
-    return this.http.get("/user/list");
+    return this.http.get<userList[]>("/user/list");
   }
 }
 
-export default new UserService();
+const UserService = new userService();
+
+export default UserService;

@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
 
 const Profile = ({
   user,
@@ -15,7 +16,7 @@ const Profile = ({
       }
     >
       {user.image ? (
-        <img src={user.image} alt="user image" />
+        <Image src={user.image} alt="user image" />
       ) : (
         <FontAwesomeIcon
           icon={faCircleUser}
