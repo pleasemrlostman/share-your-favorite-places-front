@@ -6,7 +6,7 @@ import { DevTool } from "@hookform/devtools";
 import { useQueryClient } from "@tanstack/react-query";
 
 import Button from "@/app/_component/Button";
-import Input from "@/app/_component/Input";
+import * as Input from "@/app/_component/Input";
 import { useUserList } from "@/service/user/useUserService";
 
 type Props = {
@@ -40,30 +40,34 @@ export default function LoginForm() {
         <div className="w-[10.9375rem] h-[3.125rem] bg-line my-9"></div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mx-[2.5rem]">
-            <Input
-              control={control}
-              name="email"
-              rules={{
-                minLength: {
-                  value: 1,
-                  message: "1글자 이상 입력해주세요.",
-                },
-              }}
-              placeholder="전화번호, 사용자 이름 또는 이메일"
-              className="w-full mb-[.375rem]"
-            />
-            <Input
-              control={control}
-              name="password"
-              rules={{
-                minLength: {
-                  value: 6,
-                  message: "6글자 이상 입력해주세요.",
-                },
-              }}
-              placeholder="비밀번호"
-              className="w-full"
-            />
+            <Input.Wrap>
+              <Input.Text
+                control={control}
+                name="email"
+                rules={{
+                  minLength: {
+                    value: 1,
+                    message: "1글자 이상 입력해주세요.",
+                  },
+                }}
+                placeholder="전화번호, 사용자 이름 또는 이메일"
+                className="w-full mb-[.375rem]"
+              />
+            </Input.Wrap>
+            <Input.Wrap>
+              <Input.Text
+                control={control}
+                name="password"
+                rules={{
+                  minLength: {
+                    value: 6,
+                    message: "6글자 이상 입력해주세요.",
+                  },
+                }}
+                placeholder="비밀번호"
+                className="w-full"
+              />
+            </Input.Wrap>
             <Button
               disabled={!isValid}
               customType={`${!isValid ? "DISABLED" : "DEFAULT"}`}

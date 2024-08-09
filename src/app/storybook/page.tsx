@@ -3,10 +3,10 @@
 import { useForm, UseControllerProps } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
-import Input from "@/app/_component/input";
+import * as Input from "@/app/_component/Input";
 import Button from "@/app/_component/Button";
 import TextArea from "@/app/_component/Textarea";
-import Radio from "@/app/_component/Radio";
+import * as Radio from "@/app/_component/Radio";
 import Checkbox from "@/app/_component/Checkbox";
 import * as Select from "@/app/_component/Select";
 
@@ -37,60 +37,68 @@ export default function Storybook() {
   return (
     <>
       <DevTool control={control} />
-      <div className="min-h-screen bg-white p-24">
+      <div className="min-h-screen bg-white py-5 w-full">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex flex-col items-start gap-10 max-w-fit">
+          <div className="flex flex-col items-start gap-10">
             <Select.Wrapper className="w-full">
               <Select.Inner control={control} name="select" />
             </Select.Wrapper>
-            <Input
-              name="input"
-              placeholder="입력해 주세요."
-              control={control}
-              rules={{
-                required: "아이디를 입력해 주세요.",
-                minLength: {
-                  value: 2,
-                  message: "2글자 이상 입력해주세요.",
-                },
-              }}
-            />
+            <Input.Wrap>
+              <Input.Text
+                name="input"
+                placeholder="입력해 주세요."
+                control={control}
+                rules={{
+                  required: "아이디를 입력해 주세요.",
+                  minLength: {
+                    value: 2,
+                    message: "2글자 이상 입력해주세요.",
+                  },
+                }}
+              />
+            </Input.Wrap>
             <TextArea
               control={control}
               name="area"
-              className="border focus:outline-none p-4"
+              className="border focus:outline-none p-4 w-full"
             />
-            <div className="flex gap-10 border p-5">
-              <Radio
-                control={control}
-                name="radio"
-                value={0}
-                label="radio-1"
-                id="radio-1"
-              />
-              <Radio
-                control={control}
-                name="radio"
-                value={1}
-                label="radio-2"
-                id="radio-2"
-              />
+            <div className="flex gap-10 border p-5 w-full">
+              <Radio.Wrap>
+                <Radio.Text
+                  control={control}
+                  name="radio"
+                  value={0}
+                  label="radio-1"
+                  id="radio-1"
+                />
+              </Radio.Wrap>
+              <Radio.Wrap>
+                <Radio.Text
+                  control={control}
+                  name="radio"
+                  value={1}
+                  label="radio-2"
+                  id="radio-2"
+                />
+              </Radio.Wrap>
             </div>
-            <div className="flex flex-col gap-10 border p-5">
-              <Checkbox
-                control={control}
-                name="single"
-                value={0}
-                label="단독"
-              />
-              <Checkbox
-                control={control}
-                name="all"
-                label="전체"
-                data={CHECKBOX_DATA}
-                allCheckedType
-              />
-              <div className="flex gap-10">
+            <div className="flex flex-col gap-5 border p-5 w-full">
+              <div className="border p-5">
+                <Checkbox
+                  control={control}
+                  name="single"
+                  value={0}
+                  label="단독"
+                />
+              </div>
+              <div className="flex flex-col gap-10 border p-5">
+                <Checkbox
+                  control={control}
+                  name="all"
+                  label="전체"
+                  data={CHECKBOX_DATA}
+                  allCheckedType
+                />
                 <Checkbox control={control} name="all" data={CHECKBOX_DATA} />
               </div>
             </div>
