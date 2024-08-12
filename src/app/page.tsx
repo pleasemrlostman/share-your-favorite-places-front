@@ -2,6 +2,7 @@ import Userist from "@/component/user-list";
 import queryOptions from "@/service/user/user-quries";
 import { Hydrate, getDehydratedQuery } from "@/utils/react-query";
 import Profile from "@/app/_component/Profile";
+import Button from "@/component/common/button";
 
 export default async function Home() {
   const { queryKey, queryFn } = queryOptions.all();
@@ -16,7 +17,7 @@ export default async function Home() {
             name: "me",
             image: null,
           }}
-          className=" w-[5rem] h-[5rem]"
+          className=" w-[5rem] h-[5rem] "
         />
         {USER_LIST.map((user, index) => {
           return (
@@ -25,11 +26,17 @@ export default async function Home() {
         })}
       </section>
       <section className="flex-grow">
-        <div className="h-full">지도영역_</div>
+        <div className="h-full">지도영역</div>
       </section>
       <Hydrate state={{ queries: [query] }}>
         <Userist />
       </Hydrate>
+      <Button label="hello world" />
+      <Button label="hello world" size="sm" />
+      <Button label="hello world" variant="navy" />
+      <Button label="hello world" variant="gray" />
+      <Button label="hello world" size="lg" variant="red" />
+      <Button label="hello world" size="xl" />
     </>
   );
 }

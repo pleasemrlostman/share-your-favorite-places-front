@@ -1,3 +1,6 @@
+import { ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
 // export const isEqual = <T extends Record<string, any>>(a: T, b: T): boolean => {
 //   if (a === b) return true;
 //   if (
@@ -67,3 +70,7 @@ export const isEqual = (value: unknown, other: unknown): boolean => {
 
   return value === other;
 };
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}

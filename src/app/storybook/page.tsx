@@ -4,11 +4,13 @@ import { useForm, UseControllerProps } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
 import Input from "@/app/_component/Input";
-import Button from "@/app/_component/Button";
+// import Button from "@/app/_component/Button";
 import TextArea from "@/app/_component/Textarea";
 import Radio from "@/app/_component/Radio";
 import Checkbox from "@/app/_component/Checkbox";
 import * as Select from "@/app/_component/Select";
+
+import Button from "@/component/common/button";
 
 type Props = {
   input: string;
@@ -40,7 +42,7 @@ export default function Storybook() {
       <div className="min-h-screen bg-white p-24">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col items-start gap-10 max-w-fit">
-            <Select.Wrapper className="w-full">
+            {/* <Select.Wrapper className="w-full">
               <Select.Inner control={control} name="select" />
             </Select.Wrapper>
             <Input
@@ -93,13 +95,14 @@ export default function Storybook() {
               <div className="flex gap-10">
                 <Checkbox control={control} name="all" data={CHECKBOX_DATA} />
               </div>
-            </div>
-            <Button
+            </div> */}
+            {/* <Button
               customType={`DEFAULT`}
               className="flex justify-center items-center w-full"
             >
               버튼명
-            </Button>
+            </Button> */}
+            <Button label="Hello World" />
           </div>
         </form>
       </div>

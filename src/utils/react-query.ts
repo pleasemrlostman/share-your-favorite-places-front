@@ -33,8 +33,6 @@ export async function getDehydratedQuery<Q extends QueryProps>({
     isEqual(query.queryKey, queryKey)
   );
 
-  console.log("dehydratedQuery", dehydratedQuery);
-
   return dehydratedQuery as DehydratedQueryExtended<
     UnwrapPromise<ReturnType<Q["queryFn"]>>
   >;
