@@ -6,7 +6,7 @@ export default function Userist() {
   return (
     <div>
       {users?.map((users) => {
-        return <div key={users.name}>{users.name}</div>;
+        return <div key={users.name}>{users.name} 테스트중</div>;
       })}
     </div>
   );

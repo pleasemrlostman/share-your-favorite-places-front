@@ -21,14 +21,8 @@ export default function RootLayout({
     <html lang="ko">
       <body className={inter.className + " flex justify-center"}>
         <ReactQueryProviders>
-          <main className="flex flex-col bg-white w-full max-w-[25rem] h-screen">
-            {children}
-            <nav className="px-3 py-4 border-t border-gray-100">
-              <ul className="flex items-center">
-                <NavMenu />
-              </ul>
-            </nav>
-          </main>
+          {children}
+          <NavMenu />
         </ReactQueryProviders>
       </body>
     </html>

@@ -17,7 +17,10 @@ export default function ReactQueryProviders({
 }: React.PropsWithChildren) {
   return (
     <QueryClientProvider client={queryClient}>
-      {children}
+      <main className="flex flex-col bg-white w-full max-w-[25rem] h-screen">
+        {children}
+      </main>
+
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
