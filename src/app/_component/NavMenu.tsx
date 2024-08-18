@@ -3,12 +3,7 @@
 import { useSelectedLayoutSegment } from "next/navigation";
 import Link from "next/link";
 import Profile from "@/app/_component/Profile";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHouse,
-  faMagnifyingGlass,
-  faPlus,
-} from "@fortawesome/free-solid-svg-icons";
+import { RiHomeFill, RiSearchLine, RiAddLine } from "@remixicon/react";
 
 const LIST_CLASS_NAME = "glow shrink-0 w-[25%]";
 const LINK_CLASS_NAME = "flex items-center justify-center";
@@ -20,26 +15,17 @@ export default function NavMenu() {
     <>
       <li className={LIST_CLASS_NAME}>
         <Link href="/" className={LINK_CLASS_NAME}>
-          <FontAwesomeIcon
-            icon={segment === "/" ? faHouse : faHouse}
-            className="w-[1.4rem] h-[1.4rem] text-gray-800"
-          />
+          <RiHomeFill size={25} color="gray" />
         </Link>
       </li>
       <li className={LIST_CLASS_NAME}>
         <Link href="/돋보기" className={LINK_CLASS_NAME}>
-          <FontAwesomeIcon
-            icon={faMagnifyingGlass}
-            className="w-[1.4rem] h-[1.4rem] text-gray-800"
-          />
+          <RiSearchLine size={25} color="gray" />
         </Link>
       </li>
       <li className={LIST_CLASS_NAME}>
         <Link href="/?" className={LINK_CLASS_NAME}>
-          <FontAwesomeIcon
-            icon={faPlus}
-            className="w-[1.4rem] h-[1.4rem] text-gray-800"
-          />
+          <RiAddLine size={25} color="gray" />
         </Link>
       </li>
       <li className={LIST_CLASS_NAME}>
