@@ -1,9 +1,8 @@
-import Userist from "@/component/user-list";
-import queryOptions from "@/service/user/user-quries";
+import UseList from "@/component/user-list";
+import queryOptions from "@/service/user/queries";
 import { Hydrate, getDehydratedQuery } from "@/utils/react-query";
 import Profile from "@/app/_component/Profile";
-import Button from "@/component/common/button";
-// import Button from "@/app/_component/Button";
+import MapBox from "@/app/_component/MapBox";
 
 export default async function Home() {
   const { queryKey, queryFn } = queryOptions.all();
@@ -27,10 +26,12 @@ export default async function Home() {
         })}
       </section>
       <section className="flex-grow">
-        <div className="h-full">지도영역</div>
+        <div className="h-full">
+          <MapBox />
+        </div>
       </section>
       <Hydrate state={{ queries: [query] }}>
-        <Userist />
+        <UseList />
       </Hydrate>
     </>
   );
@@ -44,7 +45,8 @@ const USER_LIST = [
   {
     name: "chu",
     image:
-      "https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202010/22/2182ecd3-b8cc-4993-98a7-8c2568f9fbbc.jpg",
+      // "https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202010/22/2182ecd3-b8cc-4993-98a7-8c2568f9fbbc.jpg",
+      null,
   },
   {
     name: "chu",

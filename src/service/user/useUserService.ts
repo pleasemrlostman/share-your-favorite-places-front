@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import queryOptions from "@/service/user/user-quries";
 
-export const useUsers = () => useQuery(queryOptions.all());
-export const useUser = (userId: number) => useQuery(queryOptions.user(userId));
+import queryOptions from "@/service/user/queries";
+
+export const useUserList = () => useQuery(queryOptions.all());

@@ -1,45 +1,68 @@
-import axios, {
-  AxiosInstance,
-  AxiosResponse,
-  InternalAxiosRequestConfig,
-} from "axios";
+interface HTTPInstance {
+  get<T>(url: string, config?: RequestInit): Promise<T>;
+  post<T>(url: string, data?: unknown, config?: RequestInit): Promise<T>;
+}
 
 class Service {
-  protected http: AxiosInstance;
+  public http: HTTPInstance;
 
-  constructor(baseURL: string) {
-    this.http = axios.create({
-      baseURL,
-    });
+  private baseURL: string;
 
-    // 요청 인터셉터
-    this.http.interceptors.request.use(
-      (config: InternalAxiosRequestConfig) => {
-        // 여기서 요청 전에 작업을 수행할 수 있습니다.
-        // 예: 토큰 추가
-        // const token = localStorage.getItem('token');
-        // if (token) {
-        //   config.headers['Authorization'] = `Bearer ${token}`;
-        // }
-        return config;
-      },
-      (error) => {
-        // 요청 오류가 있는 작업 수행
-        return Promise.reject(error);
+  private headers: Record<string, string>;
+
+  constructor() {
+    this.baseURL = `https://impressed-tandie-jhfordeploy-9d06538a.koyeb.app`;
+    this.headers = {
+      Referer: this.baseURL,
+    };
+
+    this.http = {
+      get: this.get.bind(this),
+      post: this.post.bind(this),
+    };
+  }
+
+  private async request<T = unknown>(
+    method: string,
+    url: string,
+    data?: unknown,
+    config?: RequestInit
+  ): Promise<T> {
+    try {
+      const response = await fetch(this.baseURL + url, {
+        method,
+        headers: {
+          ...this.headers,
+          "Content-Type": "application/json",
+          ...config?.headers,
+        },
+        credentials: "include",
+        body: data ? JSON.stringify(data) : undefined,
+        ...config,
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
       }
-    );
 
-    // 응답 인터셉터
-    this.http.interceptors.response.use(
-      (response: AxiosResponse) => {
-        // 응답 데이터를 가공하거나 로깅할 수 있습니다.
-        return response.data;
-      },
-      (error) => {
-        // 응답 오류가 있는 작업 수행
-        return Promise.reject(error);
-      }
-    );
+      const responseData: T = await response.json();
+      return responseData;
+    } catch (error) {
+      console.error("Error:", error);
+      throw error;
+    }
+  }
+
+  private get<T>(url: string, config?: RequestInit): Promise<T> {
+    return this.request<T>("GET", url, undefined, config);
+  }
+
+  private post<T>(
+    url: string,
+    data?: unknown,
+    config?: RequestInit
+  ): Promise<T> {
+    return this.request<T>("POST", url, data, config);
   }
 }
 

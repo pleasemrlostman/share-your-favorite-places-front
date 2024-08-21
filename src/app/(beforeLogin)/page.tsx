@@ -1,7 +1,8 @@
 import Link from "next/link";
-import Button from "../_component/Button";
 
-export default function Home() {
+import Button from "@/app/_component/Button";
+
+export default async function Home() {
   return (
     <main className="w-[21.875rem] py-[.625rem] border border-line text-center flex items-center flex-col">
       <div className="my-9">share your favorite places</div>

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import ReactQueryProviders from "@/hooks/useReactQuery";
 import NavMenu from "@/app/_component/NavMenu";
-import ReactQueryProviders from "@/app/queryClient";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,10 @@ export default function RootLayout({
           {children}
           <NavMenu />
         </ReactQueryProviders>
+        <Script
+          src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.KAKAO_JS_APPKEY}&libraries=services,clusterer&autoload=false`}
+          strategy="beforeInteractive"
+        />
       </body>
     </html>
   );

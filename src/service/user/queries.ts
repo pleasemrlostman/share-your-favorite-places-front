@@ -1,4 +1,4 @@
-import UserService from "./user-service";
+import UserService from "@/service/user/service";
 
 const queryKeys = {
   all: ["users"] as const,
@@ -8,11 +8,7 @@ const queryKeys = {
 const queryOptions = {
   all: () => ({
     queryKey: queryKeys.all,
-    queryFn: () => UserService.getUsers(),
-  }),
-  user: (userId: number) => ({
-    queryKey: queryKeys.all,
-    queryFn: () => UserService.getUser(userId),
+    queryFn: () => UserService.getUserList(),
   }),
 };
 

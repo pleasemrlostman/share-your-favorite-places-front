@@ -97,7 +97,7 @@ fetch를 사용하여 HTTP 요청을 수행하는 기본 Service 클래스를 �
 import Service from "@/service/index";
 
 class UserService extends Service {
-  getUsers() {
+  getUserList() {
     return this.http.get("/user/list");
   }
 }
@@ -120,7 +120,7 @@ const queryKeys = {
 const queryOptions = {
   all: () => ({
     queryKey: queryKeys.all,
-    queryFn: () => UserService.getUsers(),
+    queryFn: () => UserService.getUserList(),
   }),
 };
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { ReactNode } from "react";
 import {
   useController,
   UseControllerProps,
@@ -11,14 +12,18 @@ type InputProps<T extends FieldValues> = UseControllerProps<T> & {
   className?: string;
 };
 
-export default function Input<T extends FieldValues>({
+export const Wrap = ({ children }: { children: ReactNode }) => {
+  return <div className="flex flex-col w-full">{children}</div>;
+};
+
+export const Text = <T extends FieldValues>({
   control,
   name,
   rules,
   className,
   placeholder,
   ...props
-}: InputProps<T>) {
+}: InputProps<T>) => {
   const {
     field: { onChange },
     fieldState: { error },
@@ -29,7 +34,7 @@ export default function Input<T extends FieldValues>({
   });
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full">
       <input
         type="text"
         onChange={onChange}
@@ -45,4 +50,4 @@ export default function Input<T extends FieldValues>({
       )}
     </div>
   );
-}
+};

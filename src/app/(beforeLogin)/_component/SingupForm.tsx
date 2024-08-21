@@ -1,11 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { FieldValue, UseControllerProps, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
 import Button from "@/app/_component/Button";
-import Input from "@/app/_component/Input";
+import * as Input from "@/app/_component/Input";
+
+import { useUpdateUser } from "@/service/auth/useAuthService";
 
 type Props = {
   email: string;
@@ -26,10 +28,19 @@ export default function SignupForm() {
       name: "",
       nickname: "",
     },
+    mode: "onChange",
   });
+
+  const successCallback = () => {
+    alert("회원가입이 완료됐습니다.");
+  };
+
+  const { mutate: registerUser } = useUpdateUser(successCallback);
 
   const onSubmit = (data: Props) => {
     console.log("data", data);
+
+    registerUser(data);
   };
 
   return (
@@ -42,48 +53,58 @@ export default function SignupForm() {
         </p>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mx-[2.5rem]">
-            <Input
-              control={control}
-              name="email"
-              rules={{
-                minLength: {
-                  value: 1,
-                  message: "1글자 이상 입력해주세요.",
-                },
-              }}
-              placeholder="휴대폰 번호 또는 이메일 주소"
-              className="w-full mb-[.375rem]"
-            />
-            <Input
-              control={control}
-              name="name"
-              placeholder="성명"
-              className="w-full mb-[.375rem]"
-            />
-            <Input
-              control={control}
-              name="nickname"
-              rules={{
-                minLength: {
-                  value: 1,
-                  message: "1글자 이상 입력해주세요.",
-                },
-              }}
-              placeholder="사용자 이름"
-              className="w-full mb-[.375rem]"
-            />
-            <Input
-              control={control}
-              name="password"
-              rules={{
-                minLength: {
-                  value: 6,
-                  message: "6글자 이상 입력해주세요.",
-                },
-              }}
-              placeholder="비밀번호"
-              className="w-full"
-            />
+            <Input.Wrap>
+              <Input.Text
+                control={control}
+                name="email"
+                rules={{
+                  minLength: {
+                    value: 1,
+                    message: "1글자 이상 입력해주세요.",
+                  },
+                }}
+                placeholder="휴대폰 번호 또는 이메일 주소"
+                className="w-full mb-[.375rem]"
+              />
+            </Input.Wrap>
+
+            <Input.Wrap>
+              <Input.Text
+                control={control}
+                name="name"
+                placeholder="성명"
+                className="w-full mb-[.375rem]"
+              />
+            </Input.Wrap>
+
+            <Input.Wrap>
+              <Input.Text
+                control={control}
+                name="nickname"
+                rules={{
+                  minLength: {
+                    value: 1,
+                    message: "1글자 이상 입력해주세요.",
+                  },
+                }}
+                placeholder="사용자 이름"
+                className="w-full mb-[.375rem]"
+              />
+            </Input.Wrap>
+            <Input.Wrap>
+              <Input.Text
+                control={control}
+                name="password"
+                rules={{
+                  minLength: {
+                    value: 6,
+                    message: "6글자 이상 입력해주세요.",
+                  },
+                }}
+                placeholder="비밀번호"
+                className="w-full"
+              />
+            </Input.Wrap>
             <Button
               disabled={!isValid}
               customType={`${!isValid ? "DISABLED" : "DEFAULT"}`}

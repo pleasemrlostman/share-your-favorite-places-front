@@ -1,4 +1,5 @@
 import { RiUserSmileFill } from "@remixicon/react";
+import Image from "next/image";
 
 const Profile = ({
   user,
@@ -14,7 +15,7 @@ const Profile = ({
       }
     >
       {user.image ? (
-        <img src={user.image} alt="user image" className="w-full" />
+        <Image src={user.image} alt="user image" />
       ) : (
         <RiUserSmileFill color="lightgray" className="w-full h-full" />
       )}

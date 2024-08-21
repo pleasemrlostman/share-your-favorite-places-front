@@ -14,14 +14,18 @@ type RadioProps<T extends FieldValues> = UseControllerProps<T> & {
   id?: string;
 };
 
-export default function Radio<T extends FieldValues>({
+export const Wrap = ({ children }: { children: React.ReactNode }) => {
+  return <div className="flex items-center">{children}</div>;
+};
+
+export const Text = <T extends FieldValues>({
   control,
   name,
   value,
   className,
   disabled,
   ...props
-}: RadioProps<T>) {
+}: RadioProps<T>) => {
   const {
     field: { onChange },
   } = useController({
@@ -45,4 +49,4 @@ export default function Radio<T extends FieldValues>({
       )}
     </div>
   );
-}
+};
