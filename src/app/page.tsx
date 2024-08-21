@@ -32,14 +32,6 @@ export default async function Home() {
       <Hydrate state={{ queries: [query] }}>
         <Userist />
       </Hydrate>
-
-      <Button label="hello world" size="sm" />
-      <Button label="hello world" variant="navy" />
-      <Button label="hello world" variant="gray" />
-      <Button label="hello world" size="lg" variant="red" />
-      <Button label="hello world" size="xl" />
-      <Button label="hello world" size="lg" variant="lime" />
-      <Button label="hello world" size="lg" variant="violet" />
     </>
   );
 }
