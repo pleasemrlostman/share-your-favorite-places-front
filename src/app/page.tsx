@@ -18,7 +18,7 @@ export default async function Home() {
             name: "me",
             image: null,
           }}
-          className=" w-[5rem] h-[5rem] "
+          className="w-[5rem] h-[5rem]"
         />
         {USER_LIST.map((user, index) => {
           return (

@@ -1,5 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import { RiUserSmileFill } from "@remixicon/react";
 
 const Profile = ({
   user,
@@ -15,12 +14,9 @@ const Profile = ({
       }
     >
       {user.image ? (
-        <img src={user.image} alt="user image" />
+        <img src={user.image} alt="user image" className="w-full" />
       ) : (
-        <FontAwesomeIcon
-          icon={faCircleUser}
-          className="w-full h-full text-gray-500"
-        />
+        <RiUserSmileFill color="lightgray" className="w-full h-full" />
       )}
     </div>
   );
