@@ -1,8 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 2px; /* Scrollbar width */
+  height: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track background */
+}
+
+::-webkit-scrollbar-thumb {
+  background: lightgray; /* Scrollbar handle */
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Scrollbar handle on hover */
 }

@@ -1,4 +1,4 @@
-import UseList from "@/component/user-list";
+import UserList from "@/component/user-list";
 import queryOptions from "@/service/user/queries";
 import { Hydrate, getDehydratedQuery } from "@/utils/react-query";
 import Profile from "@/app/_component/Profile";
@@ -10,7 +10,7 @@ export default async function Home() {
   const query = await getDehydratedQuery({ queryKey, queryFn });
 
   return (
-    <>
+    <div className="border w-full max-w-xl h-dvh m-auto border-b-0 pb-20">
       <section className="min-w-full overflow-x-auto flex flex-nowrap gap-[1rem] pl-3 py-2 border-b border-gray-100">
         <Profile
           user={{
@@ -31,9 +31,9 @@ export default async function Home() {
         </div>
       </section>
       <Hydrate state={{ queries: [query] }}>
-        <UseList />
+        <UserList />
       </Hydrate>
-    </>
+    </div>
   );
 }
 

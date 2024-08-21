@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={inter.className + " flex justify-center"}>
+      <body className={inter.className}>
         <ReactQueryProviders>
           {children}
           <NavMenu />

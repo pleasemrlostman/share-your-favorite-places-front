@@ -102,7 +102,7 @@ export default function Storybook() {
                 />
                 <Checkbox control={control} name="all" data={CHECKBOX_DATA} />
               </div>
-            </div> */}
+            </div>
             {/* <Button
               customType={`DEFAULT`}
               className="flex items-center justify-center w-full"
