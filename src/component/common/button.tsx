@@ -7,7 +7,7 @@ import { cn } from "@/utils/index";
 const ButtonVariants = cva(
   `
     flex justify-center items-center rounded-md 
-    text-sm font-bold text-white w-fit
+    text-sm font-md text-white w-fit
     `,
   {
     variants: {
@@ -16,11 +16,8 @@ const ButtonVariants = cva(
         gray: "bg-text",
         navy: "bg-navy",
         red: "bg-error",
-        test: "bg-test",
         lime: "bg-lime-600",
-        kkk: "bg-yellow-950",
         violet: "bg-violet-500",
-        test4: "bg-test4",
       },
       size: {
         sm: "px-2 py-1",

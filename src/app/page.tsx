@@ -2,8 +2,8 @@ import Userist from "@/component/user-list";
 import queryOptions from "@/service/user/user-quries";
 import { Hydrate, getDehydratedQuery } from "@/utils/react-query";
 import Profile from "@/app/_component/Profile";
-// import Button from "@/component/common/button";
-import Button from "@/app/_component/Button";
+import Button from "@/component/common/button";
+// import Button from "@/app/_component/Button";
 
 export default async function Home() {
   const { queryKey, queryFn } = queryOptions.all();
@@ -33,14 +33,13 @@ export default async function Home() {
         <Userist />
       </Hydrate>
 
-      {/* <Button label="hello world" variant="violet" /> */}
-      {/* <Button label="hello world" size="sm" />
+      <Button label="hello world" size="sm" />
       <Button label="hello world" variant="navy" />
       <Button label="hello world" variant="gray" />
       <Button label="hello world" size="lg" variant="red" />
       <Button label="hello world" size="xl" />
       <Button label="hello world" size="lg" variant="lime" />
-      <Button label="hello world" size="lg" variant="kkk" /> */}
+      <Button label="hello world" size="lg" variant="violet" />
     </>
   );
 }
