@@ -5,8 +5,8 @@ import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { useQueryClient } from "@tanstack/react-query";
 
-import Button from "@/app/_component/Button";
-import * as Input from "@/app/_component/Input";
+import Button from "@/component/common/Button";
+import * as Input from "@/component/common/input";
 import { useUserList } from "@/service/user/useUserService";
 
 type Props = {

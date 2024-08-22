@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import Button from "@/app/_component/Button";
+import Button from "@/component/common/Button";
 
 export default async function Home() {
   return (

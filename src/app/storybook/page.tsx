@@ -3,10 +3,10 @@
 import { FieldErrors, useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
-import TextArea from "@/app/_component/Textarea";
-import * as Radio from "@/app/_component/Radio";
-import Checkbox from "@/app/_component/Checkbox";
-import * as Select from "@/app/_component/Select";
+import TextArea from "@/component/common/Textarea";
+import * as Radio from "@/component/common/Radio";
+import Checkbox from "@/component/common/Checkbox";
+import * as Select from "@/component/common/Select";
 
 // refacot component
 import Button from "@/component/common/button";

@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
-import Button from "@/app/_component/Button";
-import * as Input from "@/app/_component/Input";
+import Button from "@/component/common/Button";
+import * as Input from "@/component/common/input";
 
 import { useUpdateUser } from "@/service/auth/useAuthService";
 

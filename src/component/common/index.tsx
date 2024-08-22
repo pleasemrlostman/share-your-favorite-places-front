@@ -1,3 +1,3 @@
-import Button from "@/app/_component/Button";
+import Button from "@/component/common/Button";
 
 export { Button };
