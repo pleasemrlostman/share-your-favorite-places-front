@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Textarea } from "@/component/common/textarea/index";
-import { FormProvider, useForm } from "react-hook-form";
 
 const meta: Meta<typeof Textarea> = {
   title: "Textarea",
