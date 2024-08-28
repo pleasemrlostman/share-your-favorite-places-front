@@ -32,7 +32,6 @@ export default function NavMenu() {
             <Profile
               user={{
                 name: "me",
-                image: null,
               }}
               className="w-[1.8rem] h-[1.8rem] text-gray-800"
             />
