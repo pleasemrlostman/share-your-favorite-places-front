@@ -1,6 +1,6 @@
 "use client";
 
-import { FieldErrors, useForm } from "react-hook-form";
+import { FieldErrors, useFieldArray, useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
 // import TextArea from "@/component/common/Textarea";
@@ -12,6 +12,8 @@ import { DevTool } from "@hookform/devtools";
 import Button from "@/component/common/button/index";
 import * as Text from "@/component/common/text/index";
 import Textarea from "@/component/common/textarea/index";
+import * as Checkbox from "@/component/common/checkbox/index";
+import { useEffect } from "react";
 
 type StoryboookProps = {
   input: string;
@@ -20,8 +22,12 @@ type StoryboookProps = {
   single: string;
   all: string[];
   select: number;
+  checkboxAll: boolean;
+  checkboxTest: { checked: boolean }[];
 };
 
+const checkedFalse = { checked: false };
+const checkedTrue = { checked: true };
 const defaultValues = {
   input: "",
   area: "",
@@ -29,16 +35,42 @@ const defaultValues = {
   single: "",
   all: [],
   select: 2,
+  checkboxAll: false,
+  checkboxTest: [checkedFalse, checkedFalse, checkedFalse],
 };
 
 export default function Storybook() {
   const {
+    watch,
+    setValue,
     control,
     handleSubmit,
     formState: { errors },
   } = useForm<StoryboookProps>({
     defaultValues: defaultValues,
   });
+
+  // 필드어레이를 이용하려면 무조건 객체[]를 기본값을 세팅해야함
+  const { fields, update } = useFieldArray({
+    control: control,
+    name: "checkboxTest",
+  });
+
+  const selectAll = watch("checkboxAll");
+
+  useEffect(() => {
+    if (selectAll) {
+      defaultValues.checkboxTest.forEach((_, index) => {
+        update(index, checkedTrue);
+      });
+    } else {
+      defaultValues.checkboxTest.forEach((_, index) => {
+        update(index, checkedFalse);
+      });
+    }
+  }, [selectAll]);
+
+  useEffect(() => {}, [watch("checkboxTest").map((value) => value.checked)]);
 
   const onSubmit = (data: StoryboookProps) => {
     console.log("data", data);
@@ -69,68 +101,39 @@ export default function Storybook() {
               <Text.Error errorMessage={errors.input.message} />
             )}
             <br />
-            <Text.Native />
+            {/* <Text.Native />
             <Text.Native widthSize="fit" />
             <Text.Native widthSize="xs" />
             <Text.Native widthSize="sm" />
             <Text.Native widthSize="md" />
             <Text.Native widthSize="lg" />
-            <Text.Native widthSize="xl" />
+            <Text.Native widthSize="xl" /> */}
           </Text.Wrap>
+          <Checkbox.Wrap>
+            <Checkbox.WithHookForm
+              control={control}
+              name="checkboxAll"
+              id="checkboxAll"
+            />
+            <Checkbox.Label name="checkboxAll" text="전체선택" />
+          </Checkbox.Wrap>
+          {fields.map((field, index) => {
+            const name = `checkboxTest.${index}.checked`;
+            return (
+              <Checkbox.Wrap key={field.id}>
+                <Checkbox.WithHookForm
+                  control={control}
+                  name={name}
+                  checked={field.checked}
+                />
+                <Checkbox.Label name={name} text={`체크박스 ${index}`} />
+              </Checkbox.Wrap>
+            );
+          })}
           <Button type="submit" label="SUBMIT" />
-
           {/* <Select.Wrapper className="w-full">
               <Select.Inner control={control} name="select" />
             </Select.Wrapper> */}
-
-            <Textarea control={control} name="textarea" variant="default" size="default"  />
-            <Textarea control={control} name="textarea" variant="gray" size="md" />
-            <Textarea control={control} name="textarea" disabled />
-          {/* <TextArea
-              control={control}
-              name="area"
-              className="w-full p-4 border focus:outline-none"
-            /> */}
-          {/* <div className="flex w-full gap-10 p-5 border">
-              <Radio.Wrap>
-                <Radio.Text
-                  control={control}
-                  name="radio"
-                  value={0}
-                  label="radio-1"
-                  id="radio-1"
-                />
-              </Radio.Wrap>
-              <Radio.Wrap>
-                <Radio.Text
-                  control={control}
-                  name="radio"
-                  value={1}
-                  label="radio-2"
-                  id="radio-2"
-                />
-              </Radio.Wrap>
-            </div> */}
-          {/* <div className="flex flex-col w-full gap-5 p-5 border">
-              <div className="p-5 border">
-                <Checkbox
-                  control={control}
-                  name="single"
-                  value={0}
-                  label="단독"
-                />
-              </div>
-              <div className="flex flex-col gap-10 p-5 border">
-                <Checkbox
-                  control={control}
-                  name="all"
-                  label="전체"
-                  data={CHECKBOX_DATA}
-                  allCheckedType
-                />
-                <Checkbox control={control} name="all" data={CHECKBOX_DATA} />
-              </div>
-            </div> */}
         </div>
         <DevTool control={control} />
       </form>
