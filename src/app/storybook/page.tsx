@@ -3,14 +3,15 @@
 import { FieldErrors, useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
-import TextArea from "@/component/common/Textarea";
-import * as Radio from "@/component/common/Radio";
-import Checkbox from "@/component/common/Checkbox";
-import * as Select from "@/component/common/Select";
+// import TextArea from "@/component/common/Textarea";
+// import * as Radio from "@/component/common/Radio";
+// import Checkbox from "@/component/common/Checkbox";
+// import * as Select from "@/component/common/Select";
 
 // refacot component
-import Button from "@/component/common/button";
-import * as Text from "@/component/common/text";
+import Button from "@/component/common/button/index";
+import * as Text from "@/component/common/text/index";
+import Textarea from "@/component/common/textarea/index";
 
 type StoryboookProps = {
   input: string;
@@ -82,6 +83,9 @@ export default function Storybook() {
               <Select.Inner control={control} name="select" />
             </Select.Wrapper> */}
 
+            <Textarea control={control} name="textarea" variant="default" size="default"  />
+            <Textarea control={control} name="textarea" variant="gray" size="md" />
+            <Textarea control={control} name="textarea" disabled />
           {/* <TextArea
               control={control}
               name="area"
