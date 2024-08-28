@@ -2,7 +2,7 @@
 
 import { useSelectedLayoutSegment } from "next/navigation";
 import Link from "next/link";
-import Profile from "@/component/common/Profile";
+import Profile from "@/component/common/ui/Profile";
 import { RiHomeFill, RiSearchLine, RiAddLine } from "@remixicon/react";
 
 const LIST_CLASS_NAME = "glow shrink-0 w-[25%]";

@@ -1,7 +1,7 @@
 import UserList from "@/component/user-list";
 import queryOptions from "@/service/user/queries";
 import { Hydrate, getDehydratedQuery } from "@/utils/react-query";
-import Profile from "@/component/common/Profile";
+import Profile from "@/component/common/ui/Profile";
 import MapBox from "@/component/common/MapBox";
 
 export default async function Home() {
