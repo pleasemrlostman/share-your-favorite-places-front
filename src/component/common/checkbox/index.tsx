@@ -10,12 +10,24 @@ export const Wrap = ({ children }: { children: ReactNode }) => {
   return <div className="flex gap-2">{children}</div>;
 };
 
-export const WithHookForm = ({ control, name }: any) => {
+export const WithHookForm = ({ control, name, onChange }: any) => {
   const { field } = useController({
     control,
     name,
   });
-  return <Native {...field} name={name} id={name} checked={field.value} />;
+
+  return (
+    <Native
+      {...field}
+      onChange={(e) => {
+        onChange && onChange(e);
+        field.onChange(e);
+      }}
+      name={name}
+      id={name}
+      checked={field.value}
+    />
+  );
 };
 
 export const Label = ({ name, text }: { name: string; text: string }) => {

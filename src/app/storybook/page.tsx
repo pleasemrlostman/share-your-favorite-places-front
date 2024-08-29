@@ -13,7 +13,7 @@ import Button from "@/component/common/button/index";
 import * as Text from "@/component/common/text/index";
 import Textarea from "@/component/common/textarea/index";
 import * as Checkbox from "@/component/common/checkbox/index";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 type StoryboookProps = {
   input: string;
@@ -41,10 +41,10 @@ const defaultValues = {
 
 export default function Storybook() {
   const {
-    watch,
-    setValue,
     control,
     handleSubmit,
+    setValue,
+    getValues,
     formState: { errors },
   } = useForm<StoryboookProps>({
     defaultValues: defaultValues,
@@ -56,10 +56,11 @@ export default function Storybook() {
     name: "checkboxTest",
   });
 
-  const selectAll = watch("checkboxAll");
+  const onSubmit = () => {};
 
-  useEffect(() => {
-    if (selectAll) {
+  const handlerAllCheckbox = useCallback((e: any) => {
+    const beforeClickedStatus = e.target.value === "true" ? false : true;
+    if (beforeClickedStatus) {
       defaultValues.checkboxTest.forEach((_, index) => {
         update(index, checkedTrue);
       });
@@ -68,21 +69,26 @@ export default function Storybook() {
         update(index, checkedFalse);
       });
     }
-  }, [selectAll]);
+  }, []);
 
-  useEffect(() => {}, [watch("checkboxTest").map((value) => value.checked)]);
-
-  const onSubmit = (data: StoryboookProps) => {
-    console.log("data", data);
-  };
-  const onError = (error: FieldErrors<StoryboookProps>) => {
-    console.log("error", error);
-  };
+  const handlerCheckbox = useCallback((e) => {
+    const beforeClickedStatus = e.target.value === "true" ? false : true;
+    if (beforeClickedStatus) {
+      const checkedLength = getValues("checkboxTest")
+        .map((value) => value.checked)
+        .filter((value) => value === true).length;
+      if (checkedLength + 1 === getValues("checkboxTest").length) {
+        setValue("checkboxAll", true);
+      }
+    } else {
+      setValue("checkboxAll", false);
+    }
+  }, []);
 
   return (
     <>
       <form
-        onSubmit={handleSubmit(onSubmit, onError)}
+        onSubmit={handleSubmit(onSubmit)}
         className="max-w-3xl m-auto p-4 border"
       >
         <div className="flex flex-col items-start gap-10">
@@ -100,20 +106,15 @@ export default function Storybook() {
             {errors?.input?.message && (
               <Text.Error errorMessage={errors.input.message} />
             )}
-            <br />
-            {/* <Text.Native />
-            <Text.Native widthSize="fit" />
-            <Text.Native widthSize="xs" />
-            <Text.Native widthSize="sm" />
-            <Text.Native widthSize="md" />
-            <Text.Native widthSize="lg" />
-            <Text.Native widthSize="xl" /> */}
           </Text.Wrap>
           <Checkbox.Wrap>
             <Checkbox.WithHookForm
               control={control}
               name="checkboxAll"
               id="checkboxAll"
+              onChange={(e: any) => {
+                handlerAllCheckbox(e);
+              }}
             />
             <Checkbox.Label name="checkboxAll" text="전체선택" />
           </Checkbox.Wrap>
@@ -125,6 +126,9 @@ export default function Storybook() {
                   control={control}
                   name={name}
                   checked={field.checked}
+                  onChange={(e: any) => {
+                    handlerCheckbox(e);
+                  }}
                 />
                 <Checkbox.Label name={name} text={`체크박스 ${index}`} />
               </Checkbox.Wrap>
