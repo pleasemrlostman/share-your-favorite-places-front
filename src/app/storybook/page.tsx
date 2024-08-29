@@ -13,7 +13,7 @@ import Button from "@/component/common/button/index";
 import * as Text from "@/component/common/text/index";
 import Textarea from "@/component/common/textarea/index";
 import * as Checkbox from "@/component/common/checkbox/index";
-import { useCallback, useEffect } from "react";
+import { useCheckboxHandlers } from "@/hooks/useCheckboxHandlers";
 
 type StoryboookProps = {
   input: string;
@@ -27,7 +27,7 @@ type StoryboookProps = {
 };
 
 const checkedFalse = { checked: false };
-const checkedTrue = { checked: true };
+const checkboxTestDefaultValue = [checkedFalse, checkedFalse, checkedFalse];
 const defaultValues = {
   input: "",
   area: "",
@@ -36,7 +36,7 @@ const defaultValues = {
   all: [],
   select: 2,
   checkboxAll: false,
-  checkboxTest: [checkedFalse, checkedFalse, checkedFalse],
+  checkboxTest: checkboxTestDefaultValue,
 };
 
 export default function Storybook() {
@@ -58,32 +58,13 @@ export default function Storybook() {
 
   const onSubmit = () => {};
 
-  const handlerAllCheckbox = useCallback((e: any) => {
-    const beforeClickedStatus = e.target.value === "true" ? false : true;
-    if (beforeClickedStatus) {
-      defaultValues.checkboxTest.forEach((_, index) => {
-        update(index, checkedTrue);
-      });
-    } else {
-      defaultValues.checkboxTest.forEach((_, index) => {
-        update(index, checkedFalse);
-      });
-    }
-  }, []);
-
-  const handlerCheckbox = useCallback((e) => {
-    const beforeClickedStatus = e.target.value === "true" ? false : true;
-    if (beforeClickedStatus) {
-      const checkedLength = getValues("checkboxTest")
-        .map((value) => value.checked)
-        .filter((value) => value === true).length;
-      if (checkedLength + 1 === getValues("checkboxTest").length) {
-        setValue("checkboxAll", true);
-      }
-    } else {
-      setValue("checkboxAll", false);
-    }
-  }, []);
+  const { handlerAllCheckbox, handlerCheckbox } = useCheckboxHandlers({
+    setValue,
+    control,
+    getValues,
+    update,
+    defaultValues: checkboxTestDefaultValue,
+  });
 
   return (
     <>

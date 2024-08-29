@@ -1,7 +1,5 @@
 import { useCallback } from "react";
 import {
-  useForm,
-  useFieldArray,
   UseFormSetValue,
   UseFormGetValues,
   FieldValues,
@@ -9,8 +7,8 @@ import {
 
 type UseCheckboxHandlersProps = {
   control: any;
-  setValue: UseFormSetValue<FieldValues>;
-  getValues: UseFormGetValues<FieldValues>;
+  setValue: any;
+  getValues: any;
   update: any;
   defaultValues: any;
 };
@@ -26,11 +24,11 @@ export const useCheckboxHandlers = ({
     (e: any) => {
       const beforeClickedStatus = e.target.value === "true" ? false : true;
       if (beforeClickedStatus) {
-        defaultValues.checkboxTest.forEach((_, index) => {
+        defaultValues?.forEach((_: any, index: number) => {
           update(index, { checked: true });
         });
       } else {
-        defaultValues.checkboxTest.forEach((_, index) => {
+        defaultValues?.forEach((_: any, index: number) => {
           update(index, { checked: false });
         });
       }
