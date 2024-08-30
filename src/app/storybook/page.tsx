@@ -60,7 +60,6 @@ export default function Storybook() {
 
   const { handlerAllCheckbox, handlerCheckbox } = useCheckboxHandlers({
     setValue,
-    control,
     getValues,
     update,
     defaultValues: checkboxTestDefaultValue,
@@ -92,7 +91,6 @@ export default function Storybook() {
             <Checkbox.WithHookForm
               control={control}
               name="checkboxAll"
-              id="checkboxAll"
               onChange={(e: any) => {
                 handlerAllCheckbox(e);
               }}
@@ -100,18 +98,19 @@ export default function Storybook() {
             <Checkbox.Label name="checkboxAll" text="전체선택" />
           </Checkbox.Wrap>
           {fields.map((field, index) => {
-            const name = `checkboxTest.${index}.checked`;
             return (
               <Checkbox.Wrap key={field.id}>
                 <Checkbox.WithHookForm
                   control={control}
-                  name={name}
-                  checked={field.checked}
-                  onChange={(e: any) => {
+                  name={`checkboxTest.${index}.checked`}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                     handlerCheckbox(e);
                   }}
                 />
-                <Checkbox.Label name={name} text={`체크박스 ${index}`} />
+                <Checkbox.Label
+                  name={`checkboxTest.${index}.checked`}
+                  text={`체크박스 ${index}`}
+                />
               </Checkbox.Wrap>
             );
           })}
@@ -125,9 +124,3 @@ export default function Storybook() {
     </>
   );
 }
-
-const CHECKBOX_DATA = [
-  { id: 1, value: "1", label: "checkbox-1" },
-  { id: 2, value: "2", label: "checkbox-2" },
-  { id: 3, value: "3", label: "checkbox-3" },
-];

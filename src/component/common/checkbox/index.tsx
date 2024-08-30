@@ -1,16 +1,20 @@
 "use clinet";
 import { ReactNode } from "react";
-import {
-  FieldValues,
-  UseControllerProps,
-  useController,
-} from "react-hook-form";
+import { Control, FieldValues, Path, useController } from "react-hook-form";
 
 export const Wrap = ({ children }: { children: ReactNode }) => {
   return <div className="flex gap-2">{children}</div>;
 };
 
-export const WithHookForm = ({ control, name, onChange }: any) => {
+export const WithHookForm = <T extends FieldValues>({
+  control,
+  name,
+  onChange,
+}: {
+  control: Control<T>;
+  name: Path<T>;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}) => {
   const { field } = useController({
     control,
     name,
@@ -19,7 +23,7 @@ export const WithHookForm = ({ control, name, onChange }: any) => {
   return (
     <Native
       {...field}
-      onChange={(e) => {
+      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
         onChange && onChange(e);
         field.onChange(e);
       }}
